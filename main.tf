@@ -53,6 +53,8 @@ resource "aws_instance" "coodesh-nginx" {
   subnet_id       = aws_subnet.coodesh_subnet.id
   security_groups = [aws_security_group.sg_coodesh.id]
   associate_public_ip_address = false
+  user_data = filebase64("${path.module}/files/setup.sh")
+  
 
   depends_on = [aws_security_group.sg_coodesh, aws_subnet.coodesh_subnet]
 }
